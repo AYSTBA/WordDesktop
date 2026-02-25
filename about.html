@@ -1,0 +1,67 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词桌面 · 关于</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">单词桌面</a>
+            <a href="index.html" class="nav-item">卡片</a>
+            <a href="my-word.html" class="nav-item">我的单词</a>
+            <a href="about.html" class="nav-item active">关于</a>
+        </div>
+        <div class="nav-right">
+            <div class="book-selector">
+                <select id="bookSelect">
+                    <option value="primary">小学通用词汇</option>
+                    <option value="junior">初中通用词汇</option>
+                    <option value="senior">高中通用词汇</option>
+                </select>
+                <button id="moreBooksBtn">更多</button>
+            </div>
+            <div class="coins-display">
+                <span class="coin-icon">🪙</span>
+                <span id="coinAmount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="moreBooksMask" class="mask hidden">
+        <!-- 面板内容同上，略 -->
+        <div class="panel">
+            <h3>选择词书</h3>
+            <div class="book-list">
+                <div class="book-item" data-book="primary">小学通用词汇</div>
+                <div class="book-item" data-book="junior">初中通用词汇</div>
+                <div class="book-item" data-book="senior">高中通用词汇</div>
+                <div class="book-item" data-book="cet4">四级词汇</div>
+                <div class="book-item" data-book="cet6">六级词汇</div>
+                <div class="book-item" data-book="tofel">托福/雅思</div>
+            </div>
+            <button class="close-panel">关闭</button>
+        </div>
+    </div>
+
+    <main class="about-card">
+        <h1>单词桌面 <span class="version">V1.0</span></h1>
+        <p class="slogan">把单词，摆在桌面上</p>
+        <p class="desc">一个高颜值、轻游戏化的电脑端背单词工具，点击卡片学习，挑战默写得金币，自由不焦虑。</p>
+        <div class="理念">核心理念：不搞噱头，只高效。</div>
+        <div class="developer">开发者：你的名字</div>
+        <div class="footer">© 2025 WordDesktop</div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 关于页面无需额外初始化，但需保持金币同步
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCoinsFromStorage();
+        });
+    </script>
+</body>
+</html>

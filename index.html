@@ -1,0 +1,91 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词桌面 · 卡片主页</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 固定顶部导航栏 -->
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">单词桌面</a>
+            <a href="index.html" class="nav-item" data-page="refresh">卡片</a>
+            <a href="my-word.html" class="nav-item" data-page="mywords">我的单词</a>
+            <a href="about.html" class="nav-item" data-page="about">关于</a>
+        </div>
+        <div class="nav-right">
+            <div class="book-selector">
+                <select id="bookSelect">
+                    <option value="primary">小学通用词汇</option>
+                    <option value="junior">初中通用词汇</option>
+                    <option value="senior">高中通用词汇</option>
+                </select>
+                <button id="moreBooksBtn">更多</button>
+            </div>
+            <div class="coins-display">
+                <span class="coin-icon">🪙</span>
+                <span id="coinAmount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 更多词书遮罩面板 -->
+    <div id="moreBooksMask" class="mask hidden">
+        <div class="panel">
+            <h3>选择词书</h3>
+            <div class="book-list">
+                <div class="book-item" data-book="primary">小学通用词汇</div>
+                <div class="book-item" data-book="junior">初中通用词汇</div>
+                <div class="book-item" data-book="senior">高中通用词汇</div>
+                <div class="book-item" data-book="cet4">四级词汇</div>
+                <div class="book-item" data-book="cet6">六级词汇</div>
+                <div class="book-item" data-book="tofel">托福/雅思</div>
+            </div>
+            <button class="close-panel">关闭</button>
+        </div>
+    </div>
+
+    <!-- 卡片桌面 -->
+    <main id="homePage" class="page active">
+        <div id="cardDesk" class="desk">
+            <!-- 卡片由JS动态生成 -->
+        </div>
+    </main>
+
+    <!-- 点击卡片后的弹窗遮罩 -->
+    <div id="cardModal" class="modal-mask hidden">
+        <div class="modal-card" id="modalCard">
+            <div class="modal-word" id="modalWord">loading</div>
+            <div class="modal-phonetic" id="modalPhonetic"></div>
+            <div class="modal-definition hidden" id="modalDefinition"></div>
+            <div class="modal-actions">
+                <button id="speakBtn">🔊 发音</button>
+                <button id="toggleDefBtn">📖 释义</button>
+                <button id="challengeBtn">⚡ 挑战</button>
+            </div>
+            <!-- 挑战模式区域 -->
+            <div id="challengeArea" class="challenge-area hidden">
+                <div class="challenge-word" id="challengeWord">Apple</div>
+                <div class="challenge-tip">输入拼写 (10s内)</div>
+                <div class="timer" id="timer">10s</div>
+                <input type="text" id="spellInput" placeholder="输入单词">
+                <button id="submitSpell">提交</button>
+                <p id="spellMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 首页专用初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('cardDesk')) {
+                initHomePage();
+            }
+        });
+    </script>
+</body>
+</html>

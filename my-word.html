@@ -1,0 +1,78 @@
+<!-- my-word.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词桌面 · 我的单词</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">单词桌面</a>
+            <a href="index.html" class="nav-item">卡片</a>
+            <a href="my-word.html" class="nav-item active">我的单词</a>
+            <a href="about.html" class="nav-item">关于</a>
+        </div>
+        <div class="nav-right">
+            <div class="book-selector">
+                <select id="bookSelect">
+                    <option value="primary">小学通用词汇</option>
+                    <option value="junior">初中通用词汇</option>
+                    <option value="senior">高中通用词汇</option>
+                </select>
+                <button id="moreBooksBtn">更多</button>
+            </div>
+            <div class="coins-display">
+                <span class="coin-icon">🪙</span>
+                <span id="coinAmount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="moreBooksMask" class="mask hidden">
+        <!-- 同index.html的面板，略（可复用相同结构） -->
+        <div class="panel">
+            <h3>选择词书</h3>
+            <div class="book-list">
+                <div class="book-item" data-book="primary">小学通用词汇</div>
+                <div class="book-item" data-book="junior">初中通用词汇</div>
+                <div class="book-item" data-book="senior">高中通用词汇</div>
+                <div class="book-item" data-book="cet4">四级词汇</div>
+                <div class="book-item" data-book="cet6">六级词汇</div>
+                <div class="book-item" data-book="tofel">托福/雅思</div>
+            </div>
+            <button class="close-panel">关闭</button>
+        </div>
+    </div>
+
+    <main class="mywords-container">
+        <h2>📘 我的词本</h2>
+        <div class="word-group-toolbar">
+            <input type="text" id="newGroupName" placeholder="新词本名称">
+            <button id="createGroupBtn">创建词本</button>
+        </div>
+        <div class="group-list" id="groupList"></div>
+        <div class="word-editor" id="wordEditor" style="display: none;">
+            <h3 id="currentGroupTitle">编辑单词</h3>
+            <div class="word-items" id="wordItems"></div>
+            <div class="add-word-form">
+                <input type="text" id="newWord" placeholder="单词">
+                <input type="text" id="newDefinition" placeholder="释义">
+                <button id="addWordBtn">添加</button>
+            </div>
+            <button id="loadToDeskBtn">📌 加载到桌面</button>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('groupList')) {
+                initMyWordsPage();
+            }
+        });
+    </script>
+</body>
+</html>
