@@ -1,4 +1,3 @@
-/* css/style.css */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +6,9 @@
 }
 
 body {
-    background: linear-gradient(145deg, #e0e8f0 0%, #b0c4de 100%);
+    /* 平滑渐变，无接缝 */
+    background: linear-gradient(135deg, #c0d4ec 0%, #9fb0cc 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -58,7 +59,7 @@ body {
 
 .nav-right {
     display: flex;
- align-items: center;
+    align-items: center;
     gap: 30px;
 }
 
@@ -158,17 +159,13 @@ body {
 
 /* 卡片桌面 */
 .desk {
-    padding: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 30px 20px;
-    justify-items: center;
-    align-items: center;
-    perspective: 800px;
+    position: relative;
     min-height: 70vh;
+    padding: 40px;
 }
 
 .word-card {
+    position: absolute;
     width: 140px;
     height: 160px;
     border-radius: 32px;
@@ -185,6 +182,7 @@ body {
     word-break: break-word;
     padding: 12px;
     transform-origin: center;
+    will-change: transform, left, top;
 }
 
 .word-card:hover {
@@ -255,126 +253,120 @@ body {
     cursor: pointer;
 }
 
+/* 挑战区域 */
 .challenge-area {
     width: 100%;
     margin-top: 20px;
     text-align: center;
 }
 
-.challenge-word {
-    font-size: 2.2rem;
-    font-weight: 800;
+.stage {
+    width: 100%;
 }
 
-.timer {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 10px 0;
-    color: #c44545;
+/* 记忆阶段 */
+.memory-timer {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    color: #2c3e50;
+}
+
+.memory-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.memory-buttons button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#exitChallengeBtn {
+    background: #e74c3c;
+    color: white;
+}
+
+#exitChallengeBtn:hover {
+    background: #c0392b;
+}
+
+#startSpellBtn {
+    background: #3498db;
+    color: white;
+}
+
+#startSpellBtn:hover {
+    background: #2980b9;
+}
+
+/* 拼写阶段 */
+.spell-tip {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
 }
 
 #spellInput {
     padding: 12px;
     width: 80%;
     border-radius: 60px;
-    border: 2px solid white;
+    border: 2px solid #3498db;
     font-size: 1.2rem;
-    margin: 8px 0;
+    margin: 10px 0;
     text-align: center;
+    outline: none;
 }
 
-#submitSpell {
-    background: #2ecc71;
-    border: none;
-    padding: 10px 28px;
-    border-radius: 40px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
+#spellInput:focus {
+    border-color: #f1c40f;
 }
 
-/* 我的单词页面 */
-.mywords-container {
-    padding: 32px;
-    max-width: 1000px;
-    margin: 0 auto;
+#spellMessage {
+    color: #e74c3c;
+    font-size: 1rem;
+    min-height: 1.5rem;
 }
 
-.group-list {
-    display: flex;
-    gap: 12px;
-    margin: 24px 0;
-    flex-wrap: wrap;
-}
-
-.group-tag {
-    background: white;
-    padding: 8px 20px;
-    border-radius: 40px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.group-tag.active {
-    background: #1e3a5f;
-    color: white;
-}
-
-.word-editor {
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 40px;
-    padding: 24px;
-}
-
-.word-items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 16px 0;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.word-row {
-    background: white;
-    padding: 12px 18px;
-    border-radius: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.word-row button {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    margin-left: 8px;
-    cursor: pointer;
-}
-
-.add-word-form {
-    display: flex;
-    gap: 8px;
-    margin: 16px 0;
-}
-
-.add-word-form input {
-    flex: 1;
-    padding: 12px;
-    border-radius: 60px;
-    border: 1px solid #ccc;
-}
-
-#loadToDeskBtn {
+/* 成功提示浮层 */
+.toast-success {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: #f1c40f;
-    border: none;
-    padding: 14px 24px;
+    color: #2c3e50;
+    padding: 16px 32px;
     border-radius: 60px;
-    font-weight: 700;
-    width: 100%;
-    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 300;
+    animation: fadeInOut 1.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    15% { opacity: 1; transform: translate(-50%, -50%); }
+    85% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -80%); }
+}
+
+/* 卡片炸开动画 */
+@keyframes popExplode {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(10deg); opacity: 0.7; }
+    100% { transform: scale(0) rotate(-20deg); opacity: 0; }
+}
+
+.card-explode {
+    animation: popExplode 0.4s ease-out forwards;
+    pointer-events: none;
 }
 
 /* 关于页面 */
@@ -395,69 +387,4 @@ body {
     padding: 4px 12px;
     border-radius: 60px;
     margin-left: 12px;
-/* ---------- 挑战成功提示浮层 ---------- */
-.toast-success {
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #f1c40f;        /* 金色背景 */
-    color: #2c3e50;
-    padding: 16px 32px;
-    border-radius: 60px;
-    font-size: 1.6rem;
-    font-weight: bold;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 300;
-    animation: fadeInOut 1.5s ease forwards;
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    15% { opacity: 1; transform: translate(-50%, -50%); }
-    85% { opacity: 1; transform: translate(-50%, -50%); }
-    100% { opacity: 0; transform: translate(-50%, -80%); }
-}
-
-/* ---------- 卡片炸开动画 ---------- */
-@keyframes popExplode {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.5) rotate(10deg); opacity: 0.7; }
-    100% { transform: scale(0) rotate(-20deg); opacity: 0; }
-}
-
-.card-explode {
-    animation: popExplode 0.4s ease-out forwards;
-    pointer-events: none;
-}
-
-/* ---------- 桌面容器改为相对定位（为绝对定位卡片准备） ---------- */
-.desk {
-    position: relative;
-    min-height: 70vh;
-    padding: 40px;
-    /* 移除之前的 grid 相关属性 */
-}
-
-/* 卡片改为绝对定位，基础样式不变 */
-.word-card {
-    position: absolute;
-    width: 140px;
-    height: 160px;
-    border-radius: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: #1e2b3a;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    transition: transform 0.2s ease, box-shadow 0.2s; /* 保留默认悬浮效果 */
-    cursor: pointer;
-    word-break: break-word;
-    padding: 12px;
-    transform-origin: center;
-    will-change: transform, left, top; /* 优化动画性能 */
-}
 }

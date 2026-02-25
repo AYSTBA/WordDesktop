@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,6 @@
         <div class="nav-left">
             <a href="index.html" class="logo">单词桌面</a>
             <a href="index.html" class="nav-item" data-page="refresh">卡片</a>
-            <a href="my-word.html" class="nav-item" data-page="mywords">我的单词</a>
             <a href="about.html" class="nav-item" data-page="about">关于</a>
         </div>
         <div class="nav-right">
@@ -66,26 +64,28 @@
                 <button id="toggleDefBtn">📖 释义</button>
                 <button id="challengeBtn">⚡ 挑战</button>
             </div>
-            <!-- 挑战模式区域 -->
+            <!-- 挑战模式区域（双阶段） -->
             <div id="challengeArea" class="challenge-area hidden">
-                <div class="challenge-word" id="challengeWord">Apple</div>
-                <div class="challenge-tip">输入拼写 (10s内)</div>
-                <div class="timer" id="timer">10s</div>
-                <input type="text" id="spellInput" placeholder="输入单词">
-                <button id="submitSpell">提交</button>
-                <p id="spellMessage"></p>
+                <!-- 记忆阶段 -->
+                <div id="memoryStage" class="stage">
+                    <div class="challenge-word" id="memoryWord">Apple</div>
+                    <div class="memory-timer">⏳ 记忆时间: <span id="memoryTimer">10s</span></div>
+                    <div class="memory-buttons">
+                        <button id="exitChallengeBtn">🚪 退出</button>
+                        <button id="startSpellBtn">⚡ 直接开始</button>
+                    </div>
+                </div>
+                <!-- 拼写阶段 -->
+                <div id="spellStage" class="stage hidden">
+                    <div class="spell-tip">✏️ 输入拼写</div>
+                    <div class="timer" id="spellTimer">8s</div>
+                    <input type="text" id="spellInput" placeholder="输入单词" autocomplete="off">
+                    <p id="spellMessage"></p>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="js/script.js"></script>
-    <script>
-        // 首页专用初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            if (document.getElementById('cardDesk')) {
-                initHomePage();
-            }
-        });
-    </script>
 </body>
 </html>

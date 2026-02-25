@@ -3,5 +3,8 @@
     {"word": "cat", "phonetic": "/kæt/", "definition": "猫"},
     {"word": "dog", "phonetic": "/dɒg/", "definition": "狗"},
     {"word": "book", "phonetic": "/bʊk/", "definition": "书"},
-    {"word": "car", "phonetic": "/kɑːr/", "definition": "汽车"}
+    {"word": "car", "phonetic": "/kɑːr/", "definition": "汽车"},
+    {"word": "house", "phonetic": "/haʊs/", "definition": "房子"},
+    {"word": "happy", "phonetic": "/ˈhæpi/", "definition": "快乐"},
+    {"word": "sad", "phonetic": "/sæd/", "definition": "悲伤"}
 ]
